@@ -631,11 +631,15 @@ nav a.active::before {
 .project-links {
   margin-top: auto;
   margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
 }
 
 .project-links a {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
   padding: 0.5rem 1rem;
   background-color: var(--pastel-green-100);
@@ -645,6 +649,11 @@ nav a.active::before {
   font-weight: 400;
   transition: all var(--transition-medium);
   border-bottom: none;
+  width: 150px;  
+  text-align: center;
+  white-space: nowrap;  
+  overflow: hidden;     
+  text-overflow: ellipsis; 
 }
 
 .project-links a:hover {

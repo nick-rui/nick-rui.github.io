@@ -153,7 +153,7 @@ document.addEventListener('DOMContentLoaded', () => {
       embed.addEventListener('click', () => {
         // This is a placeholder for future PDF embedding functionality
         // You can replace this with actual PDF embedding when you have the files
-        alert('PDF embedding will be activated when you add your research papers.');
+        // alert('PDF embedding will be activated when you add your research papers.');
       });
     });
   }
