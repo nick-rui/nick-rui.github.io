@@ -1,0 +1,197 @@
+This is a placeholder file.
+
+The LaTeX content for the "Ten-Dimensional Balls" paper has been integrated into the main article. If you would like to compile the LaTeX document separately, the LaTeX code is available and has been translated into the HTML content.
+
+To create the PDF paper, save the LaTeX code as "hyperspheres-paper.tex" and compile it with a LaTeX compiler.
+
+LaTeX source code:
+
+\documentclass{article}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{tikz}
+\usepackage{xcolor}
+\usepackage{fullpage,color}
+\usepackage{url,hyperref}
+\pagestyle{empty}
+\setlength{\oddsidemargin}{0in}
+\setlength{\topmargin}{0in}
+\setlength{\textwidth}{6.5in}
+\setlength{\textheight}{8.5in}
+\setlength{\parindent}{0pt}
+\newtheorem{fact}{Fact}
+\newtheorem*{lemma}{Lemma}
+\newtheorem{prob}{Problem}
+\newtheorem{conjecture}{Conjecture}
+\newenvironment{note}[1]{\medskip\noindent \textbf{#1:}}%
+{\medskip}
+\newenvironment{proofsketch}{\noindent{\bf Proof Sketch.}}%
+{\hspace*{\fill}$\Box$\par\vspace{4mm}}
+\newenvironment{proofof}[1]{\smallskip\noindent{\bf Proof of #1.}}%
+{\hspace*{\fill}$\Box$\par}
+\newcommand{\etal}{{\em et al.}\ }
+\newcommand{\assign}{\leftarrow}
+\newcommand{\eps}{\epsilon}
+\newcommand{\opt}{\textrm{\sc OPT}}
+\newcommand{\script}[1]{\mathcal{#1}}
+\newcommand{\ceil}[1]{\lceil #1 \rceil}
+\newcommand{\floor}[1]{\lfloor #1 \rfloor}
+\newcommand{\yell}[1]{\textbf{#1}}
+\renewcommand{\vec}[1]{\mathbf{#1}}
+\newcommand{\mat}[1]{\mathbf{#1}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\FF}{\mathbb{F}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\innprod}[1]{\left\langle {#1} \right\rangle}
+\newcommand{\inv}{{-1}}
+\newcommand{\bx}{\mathbf{x}}
+\newcommand{\by}{\mathbf{y}}
+\newcommand{\bv}{\mathbf{v}}
+\newcommand{\bu}{\mathbf{u}}
+\newcommand{\bw}{\mathbf{w}}
+\newcommand{\bzero}{\mathbf{0}}
+\newcommand{\cR}{\mathcal{R}}
+\newcommand{\va}{\vec{a}}
+\newcommand{\vb}{\vec{b}}
+\newcommand{\ve}{\vec{e}}
+\newcommand{\vv}{\vec{v}}
+\newcommand{\vu}{\vec{u}}
+\newcommand{\vw}{\vec{w}}
+\newcommand{\vp}{\vec{p}}
+\newcommand{\vx}{\vec{x}}
+\newcommand{\vy}{\vec{y}}
+\newcommand{\vh}{\vec{h}}
+\newcommand{\vc}{\vec{c}}
+\newcommand{\vz}{\vec{z}}
+\newcommand{\ep}{\epsilon}
+\newcommand{\vep}{\varepsilon}
+\newcommand{\kernel}{\mbox{Ker}}
+\newcommand{\range}{\mbox{Ran}}
+\newcommand{\sgn}{\mbox{sgn}}
+\newcommand{\edge}[2]{\left\{ {#1}, {#2} \right\}}
+\newcommand{\dedge}[2]{\left( {#1}, {#2} \right)}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\cc}[1]{\mathsf{#1}}
+\newcommand{\conv}{\mbox{conv}}
+\newcommand{\supp}{\mbox{supp}}
+\newcommand{\intersect}{\cap}
+\newcommand{\union}{\cup}
+\newcommand{\Ker}{\mbox{Ker }}
+\newcommand{\Sp}{\mbox{span}}
+\newcommand{\disp}{\displaystyle}
+
+\title{A Weird Phenomenon with Ten-Dimensional Balls}
+\author{Nick Rui}
+\date{March 2025}
+
+\begin{document}
+
+\maketitle
+
+Here's the problem. Consider a square of length $4$. Let's draw four circles with radius $1$ that pack themselves into the larger square. Then, in the small space between the four circles, we draw a smaller ``embedded'' circle tangent to the four blue circles. What is the radius of this ``embedded'' circle?\\
+
+\begin{center}
+\begin{tikzpicture}[scale=2]
+    % Draw the square
+    \draw[thick] (-2,-2) rectangle (2,2);
+    % \draw[thick] (-1,-1) rectangle (1,1);
+    
+    % Draw the four unit circles
+    \draw[blue] (-1,-1) circle (1);
+    \draw[blue] (-1,1) circle (1);
+    \draw[blue] (1,-1) circle (1);
+    \draw[blue] (1,1) circle (1);
+    
+    % Draw the embedded circle
+    \draw[red, thick] (0,0) circle ({sqrt(2)-1});
+
+    % Label the square dimensions
+    \draw[<->, thick] (-2,-2.3) -- node[below] {$4$} (2,-2.3);
+    \draw[<->, thick] (-2.3,-2) -- node[left] {$4$} (-2.3,2);
+    
+    % Label the radii
+    \draw[<->, thick] (-1,-1) -- node[above] {$1$} (0, -1);
+    \draw[<->, thick] (0.4,0) -- node[above] {$?$} (0,0);
+\end{tikzpicture}
+\end{center}
+
+Solving this problem requires some interesting visual geometry. Consider drawing a diagonal line across the large square. We know the length of this line can be found by utilizing right triangles since the diagonal is the hypotenuse of the isosceles triangle formed alongside the two sides of the square. Thus, the length of this diagonal is $4\sqrt{2}$. \\
+
+However, this diagonal can also be viewed as the sum of different parts. \\
+
+\begin{center}
+\begin{tikzpicture}[scale=2]
+    % Draw the square
+    \draw[thick] (-2,-2) rectangle (2,2);
+    % \draw[thick] (-1,-1) rectangle (1,1);
+    
+    % Draw the four unit circles
+    \draw[blue] (-1,-1) circle (1);
+    \draw[blue] (-1,1) circle (1);
+    \draw[blue] (1,-1) circle (1);
+    \draw[blue] (1,1) circle (1);
+    
+    % Draw the embedded circle
+    \draw[red, thick] (0,0) circle ({sqrt(2)-1});
+    \draw[red,-,thick] (0.3, 0.3) -- (-0.3, -0.3);
+    \draw[blue,-,thick] (0.3, 0.3) -- (1, 1);
+    \draw[blue,-,thick] (-0.3, -0.3) -- (-1, -1);
+
+    % Label the square dimensions
+    \draw[<->, thick] (-2,-2.3) -- node[below] {$4$} (2,-2.3);
+    \draw[<->, thick] (-2.3,-2) -- node[left] {$4$} (-2.3,2);
+    
+    \draw[green,-, thick] (-1,-2) -- node[right] {$1$} (-1, -1);
+    \draw[green,-, thick] (-2,-1) -- node[above] {$1$} (-1, -1);
+    \draw[green,-, thick] (-2,-1) -- node[above] {} (-2, -2);
+    \draw[green,-, thick] (-1,-2) -- node[above] {} (-2, -2);
+    \draw[green,-, thick] (-2, -2) -- node[above] {} (-1, -1);
+
+    \draw[green,-, thick] (1,2) -- node[left] {$1$} (1, 1);
+    \draw[green,-, thick] (2,1) -- node[below] {$1$} (1, 1);
+    \draw[green,-, thick] (2,1) -- node[above] {} (2, 2);
+    \draw[green,-, thick] (1,2) -- node[above] {} (2, 2);
+    \draw[green,-, thick] (2, 2) -- node[above] {} (1, 1);
+    
+\end{tikzpicture}
+\end{center}
+
+The green sections of the large diagonal are diagonals of smaller squares with side length $1$ (notice the sides of the square are formed with radii of the circles). We know the diagonal of each smaller square is length $\sqrt{2}$, and so these two green parts of the large diagonal contribute a length of $2 \sqrt{2}$. \\
+
+The blue sections of the large diagonal are just radii of the larger circles, which in total contribute a length of $2$. \\
+
+The red section is the diameter of the embedded circle, which is twice the mystery radius we want to find. \\
+
+Since we know the actual length of this line if $4\sqrt{2}$ we can write an algebraic equation to solve for $r$, the radius of the embedded circle.
+
+\begin{align*}
+    4\sqrt{2} &= 2\sqrt{2} + 2 + 2r \\
+    2r &= 2\sqrt{2} - 2 \\
+    r &= \sqrt{2} - 1 \approx 0.414\\
+\end{align*}
+
+A more interesting result arises when we consider a similar geometric configuration in three dimensions. \\
+
+Imagine a $4 \times 4 \times 4$ cube in three-dimensional space packed nicely with spheres of radius $1$. Notice that now, we can pack $8$ of these spheres into our cube. (A nice way to think of this is that each sphere resides in a corner of the cube. In the 2D case, our ``box'' had 4 corners, and so it could fit $4$ ``balls''. In the 3D case, our ``box'' has 8 corners, and so it fits $8$ ``balls''). Again, we can imagine fitting a small sphere inside the small gap between all $8$ unit spheres. What is the radius of this sphere? \\
+
+Again, we can draw a diagonal from one end of our cube to the other end, which, since we are in three dimensions, now has length $4\sqrt{3}$. This diagonal can be again partitioned into two diagonals of smaller $1 \times 1 \times 1$ cubes, two radii of the unit spheres, and the diameter of the embedded sphere. Solving for the radius $r$ of the embedded sphere, we have
+\begin{align*}
+    4\sqrt{3} &= 2\sqrt{3} + 2 + 2r \\
+    2r &= 2\sqrt{3} - 2 \\
+    r &= \sqrt{3} - 1 \approx 0.732
+\end{align*}
+
+Now, imagine a similar problem in four-dimensional space. We have a $4 \times 4 \times 4 \times 4$ hypercube (which we may imagine as a ``4D box'') packed neatly with $16$ hyperspheres of radius $1$ (which we may image as ``4D balls''). Again, consider embedding a ball in the gap between all sixteen balls and finding it's radius. A similar calculation will yield
+\begin{align*}
+    r = \sqrt{4} - 1 = 1
+\end{align*}
+
+It turns out, this embedded ball is exactly the same size as the other $16$ balls! \\
+
+You can (and should) verify that the radius of this embedded ball follows a pattern. In $n$ dimensional space, the radius of this ball is a function of $n$. Explicitly, it seems (and is true) that $r(n) = \sqrt{n} - 1$. \\
+
+Here comes the punchline. What we have found is that the radius of this embedded ball increases as we increase the number of dimensions in space. At ten dimensions, our radius is $r(10) = \sqrt{10} - 1 \approx 2.162$. However, this ball has a diameter greater than $4$, which is the length of the edges of our box! Somehow, after ten-dimensions (for $n \geq 10$) this embedded sphere is larger than the box that contains the spheres it fits between. If we were able to view this geometric configuration, the embedded ball would be poking out the boundaries of the box. Isn't that weird. \\
+
+\end{document} 

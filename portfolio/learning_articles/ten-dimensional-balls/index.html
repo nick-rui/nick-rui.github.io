@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>A Weird Phenomenon with Ten-Dimensional Balls | Nick Rui</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600&family=Work+Sans:wght@200;300;400&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../styles.css">
+    
+    <!-- MathJax for LaTeX rendering -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <!-- JSXGraph for interactive diagrams -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/jsxgraph@1.4.6/distrib/jsxgraph.css" />
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jsxgraph@1.4.6/distrib/jsxgraphcore.js"></script>
+    
+    <style>
+      .article-container {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+      
+      .article-header {
+        margin-bottom: 2rem;
+      }
+      
+      .article-meta {
+        color: var(--text-tertiary);
+        margin-bottom: 1.5rem;
+        font-size: 0.9rem;
+      }
+      
+      .article-meta span {
+        margin-right: 1.5rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      
+      .article-content {
+        font-size: 1.1rem;
+        line-height: 1.8;
+      }
+      
+      .article-content p {
+        margin-bottom: 1.5rem;
+      }
+      
+      .math-block {
+        overflow-x: auto;
+        padding: 1.5rem;
+        margin: 2rem 0;
+        background-color: var(--pastel-green-100);
+        border-radius: 8px;
+      }
+      
+      .diagram {
+        width: 100%;
+        height: 400px;
+        margin: 2rem 0;
+        border: 1px solid var(--pastel-green-200);
+        border-radius: 8px;
+      }
+      
+      .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 2rem;
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+        transition: all var(--transition-medium);
+      }
+      
+      .back-link:hover {
+        color: var(--pastel-green-500);
+        transform: translateX(-5px);
+      }
+
+      figure {
+        margin: 2rem 0;
+        text-align: center;
+      }
+
+      figcaption {
+        margin-top: 0.5rem;
+        font-size: 0.9rem;
+        color: var(--text-tertiary);
+      }
+      
+      .paper-download {
+        margin-top: 3rem;
+        padding: 1.5rem;
+        background-color: var(--pastel-green-50);
+        border: 1px solid var(--pastel-green-200);
+        border-radius: 8px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+      
+      .paper-download h3 {
+        margin-top: 0;
+        margin-bottom: 1rem;
+      }
+      
+      .paper-download p {
+        margin-bottom: 1.5rem;
+      }
+      
+      .pdf-button {
+        display: inline-flex;
+        align-items: center;
+        padding: 0.75rem 1.5rem;
+        background-color: var(--pastel-green-300);
+        color: var(--text-primary);
+        border-radius: 4px;
+        text-decoration: none;
+        font-weight: 500;
+        transition: all var(--transition-medium);
+        gap: 0.5rem;
+      }
+      
+      .pdf-button:hover {
+        background-color: var(--pastel-green-400);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      }
+      
+      .reference {
+        margin-top: 3rem;
+        border-top: 1px solid var(--pastel-green-100);
+        padding-top: 1.5rem;
+      }
+      
+      .reference h3 {
+        margin-top: 0;
+        margin-bottom: 1rem;
+      }
+      
+      .reference-list {
+        list-style-type: none;
+        padding-left: 0;
+      }
+      
+      .reference-list li {
+        margin-bottom: 1rem;
+        padding-left: 2rem;
+        text-indent: -2rem;
+      }
+    </style>
+  </head>
+  <body>
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <div class="image-wrapper">
+          <img src="../../images/nick.jpg" alt="Nick Rui" />
+        </div>
+        <h1>Nick Rui</h1>
+      </div>
+      
+      <nav>
+        <ul>
+          <li><a href="../../index.html">Home</a></li>
+          <li><a href="../../about.html">About Me</a></li>
+          <li><a href="../../projects.html">Projects</a></li>
+          <li><a href="../../learning.html">Learning</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <main class="main-content">
+      <div class="content-area">
+        <a href="../../learning.html" class="back-link">
+          <i class="fas fa-arrow-left"></i>
+          <span>Back to Learning</span>
+        </a>
+        
+        <div class="article-container">
+          <div class="article-header">
+            <h2 id="article-title">A Weird Phenomenon with Ten-Dimensional Balls</h2>
+            <div class="article-meta">
+              <span><i class="fas fa-calendar-alt"></i> Published: March 2025</span>
+            </div>
+          </div>
+          
+          <!-- <div class="article-content">
+            <p>
+              Here's the problem. Consider a square of length 4. Let's draw four circles with radius 1 that pack themselves into the larger square. Then, in the small space between the four circles, we draw a smaller "embedded" circle tangent to the four blue circles. What is the radius of this "embedded" circle?
+            </p>
+            
+            <div class="math-block">
+              <div style="text-align: center;">
+                <img src="../../images/2d-ball-embedding.svg" alt="2D Circle Embedding" style="max-width: 400px;">
+              </div>
+            </div>
+            
+            <p>
+              Solving this problem requires some interesting visual geometry. Consider drawing a diagonal line across the large square. We know the length of this line can be found by utilizing right triangles since the diagonal is the hypotenuse of the isosceles triangle formed alongside the two sides of the square. Thus, the length of this diagonal is \(4\sqrt{2}\).
+            </p>
+            
+            <p>
+              However, this diagonal can also be viewed as the sum of different parts.
+            </p>
+            
+            <div class="math-block">
+              <div style="text-align: center;">
+                <img src="../../images/2d-ball-embedding.svg" alt="2D Circle Embedding with Diagonal" style="max-width: 400px;">
+              </div>
+            </div>
+            
+            <p>
+              The green sections of the large diagonal are diagonals of smaller squares with side length 1 (notice the sides of the square are formed with radii of the circles). We know the diagonal of each smaller square is length \(\sqrt{2}\), and so these two green parts of the large diagonal contribute a length of \(2\sqrt{2}\).
+            </p>
+            
+            <p>
+              The blue sections of the large diagonal are just radii of the larger circles, which in total contribute a length of 2.
+            </p>
+            
+            <p>
+              The red section is the diameter of the embedded circle, which is twice the mystery radius we want to find.
+            </p>
+            
+            <p>
+              Since we know the actual length of this line if 4√2 we can write an algebraic equation to solve for r, the radius of the embedded circle.
+            </p>
+            
+            <div class="math-block">
+              \begin{align}
+              4\displaystyle\sqrt{2} &= 2\displaystyle\sqrt{2} + 2 + 2r \\
+              2r &= 2\displaystyle\sqrt{2} - 2 \\
+              r &= \displaystyle\sqrt{2} - 1 \approx 0.414
+              \end{align}
+            </div>
+            
+            <p>
+              A more interesting result arises when we consider a similar geometric configuration in three dimensions.
+            </p>
+            
+            <p>
+              Imagine a 4 × 4 × 4 cube in three-dimensional space packed nicely with spheres of radius 1. Notice that now, we can pack 8 of these spheres into our cube. (A nice way to think of this is that each sphere resides in a corner of the cube. In the 2D case, our "box" had 4 corners, and so it could fit 4 "balls". In the 3D case, our "box" has 8 corners, and so it fits 8 "balls"). Again, we can imagine fitting a small sphere inside the small gap between all 8 unit spheres. What is the radius of this sphere?
+            </p>
+            
+            <p>
+              Again, we can draw a diagonal from one end of our cube to the other end, which, since we are in three dimensions, now has length \(4\sqrt{3}\). This diagonal can be again partitioned into two diagonals of smaller \(1 \times 1 \times 1\) cubes, two radii of the unit spheres, and the diameter of the embedded sphere. Solving for the radius \(r\) of the embedded sphere, we have
+            </p>
+            
+            <div class="math-block">
+              \begin{align}
+              4\displaystyle\sqrt{3} &= 2\displaystyle\sqrt{3} + 2 + 2r \\
+              2r &= 2\displaystyle\sqrt{3} - 2 \\
+              r &= \displaystyle\sqrt{3} - 1 \approx 0.732
+              \end{align}
+            </div>
+            
+            <p>
+              Now, imagine a similar problem in four-dimensional space. We have a \(4 \times 4 \times 4 \times 4\) hypercube (which we may imagine as a "4D box") packed neatly with 16 hyperspheres of radius 1 (which we may image as "4D balls"). Again, consider embedding a ball in the gap between all sixteen balls and finding its radius. A similar calculation will yield
+            </p>
+            
+            <div class="math-block">
+              \begin{align}
+              r = \displaystyle\sqrt{4} - 1 = 1
+              \end{align}
+            </div>
+            
+            <p>
+              It turns out, this embedded ball is exactly the same size as the other 16 balls!
+            </p>
+            
+            <p>
+              You can (and should) verify that the radius of this embedded ball follows a pattern. In \(n\) dimensional space, the radius of this ball is a function of \(n\). Explicitly, it seems (and is true) that \(r(n) = \displaystyle\sqrt{n} - 1\).
+            </p>
+            
+            <p>
+              Here comes the punchline. What we have found is that the radius of this embedded ball increases as we increase the number of dimensions in space. At ten dimensions, our radius is \(r(10) = \displaystyle\sqrt{10} - 1 \approx 2.162\). However, this ball has a diameter greater than 4, which is the length of the edges of our box! Somehow, after ten-dimensions (for \(n \geq 10\)) this embedded sphere is larger than the box that contains the spheres it fits between. If we were able to view this geometric configuration, the embedded ball would be poking out the boundaries of the box. Isn't that weird.
+            </p> -->
+            
+            <div class="paper-download">
+              <a href="resources/10D_embedded_hyperspheres.pdf" class="pdf-button" target="_blank">
+                <i class="fas fa-file-code"></i>
+                <span>PDF Paper</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script>
+      // Initialize JSXGraph diagram for volume distribution
+      window.onload = function() {
+        var board = JXG.JSXGraph.initBoard('diagram1', {
+          boundingbox: [0, 1.1, 20, -0.1],
+          axis: true,
+          grid: false
+        });
+        
+        // Create a slider for dimensions
+        var n = board.create('slider', [[2, 1], [10, 1], [1, 5, 20]], {
+          name: 'dimension (n)',
+          snapWidth: 1
+        });
+        
+        // Function to calculate volume ratio
+        var volumeRatio = function(r, dim) {
+          return 1 - Math.pow(r, dim);
+        };
+        
+        // Plot the volume ratio for a shell from r to 1.0
+        var curve = board.create('functiongraph', [function(x) {
+          return volumeRatio(x, n.Value());
+        }, 0, 1], {strokeColor: '#8bc88b', strokeWidth: 2});
+        
+        // Update when slider changes
+        n.on('drag', function() {
+          board.update();
+        });
+        
+        // Add labels
+        board.create('text', [2, 0.9, function() {
+          return 'In dimension n = ' + Math.round(n.Value()) + ':';
+        }], {fontSize: 14});
+        
+        board.create('text', [2, 0.8, function() {
+          return '90% of volume is in shell from r = ' + 
+            (Math.pow(0.1, 1/n.Value())).toFixed(4) + ' to 1.0';
+        }], {fontSize: 12});
+        
+        // Add x and y axis labels
+        board.create('text', [20, -0.05, 'r (radius)'], {
+          anchorX: 'right', anchorY: 'top'
+        });
+        
+        board.create('text', [0.5, 1.05, 'Volume Ratio'], {
+          anchorX: 'left', anchorY: 'bottom'
+        });
+        
+        // Initialize second diagram for orthogonality of random vectors
+        var orthBoard = JXG.JSXGraph.initBoard('orthogonalityDiagram', {
+          boundingbox: [-0.1, 1.1, 100.1, -0.1],
+          axis: true,
+          grid: false
+        });
+        
+        // Create a slider for number of dimensions
+        var dimSlider = orthBoard.create('slider', [[10, 1], [50, 1], [2, 30, 100]], {
+          name: 'dimension (n)',
+          snapWidth: 1
+        });
+        
+        // Function to simulate dot products of random unit vectors
+        function simulateRandomVectorDotProducts(dim, numTrials) {
+          // Generate dot products for random unit vectors
+          var dotProducts = [];
+          for (var i = 0; i < numTrials; i++) {
+            // Rather than actually generating random vectors, we use the fact
+            // that dot products follow a distribution with variance 1/n
+            var dotProduct = (Math.random() * 2 - 1) / Math.sqrt(dim);
+            dotProducts.push(Math.abs(dotProduct));
+          }
+          return dotProducts;
+        }
+        
+        // Generate histogram data
+        function generateHistogram(data, numBins) {
+          var min = 0;
+          var max = 1;
+          var binSize = (max - min) / numBins;
+          var bins = Array(numBins).fill(0);
+          
+          data.forEach(function(value) {
+            var binIndex = Math.min(Math.floor((value - min) / binSize), numBins - 1);
+            bins[binIndex]++;
+          });
+          
+          // Normalize to get probability density
+          var total = data.length;
+          bins = bins.map(function(count) {
+            return count / (total * binSize);
+          });
+          
+          return bins;
+        }
+        
+        // Plot the histogram of dot products
+        var numBins = 20;
+        var barsArray = [];
+        
+        function updateHistogram() {
+          // Clear previous bars
+          for (var i = 0; i < barsArray.length; i++) {
+            orthBoard.removeObject(barsArray[i]);
+          }
+          barsArray = [];
+          
+          // Generate new data
+          var dim = Math.round(dimSlider.Value());
+          var dotProducts = simulateRandomVectorDotProducts(dim, 1000);
+          var histData = generateHistogram(dotProducts, numBins);
+          
+          // Plot new bars
+          var binSize = 1 / numBins;
+          var scaleFactor = 10; // Scale the height for better visibility
+          
+          for (var i = 0; i < numBins; i++) {
+            var x1 = i * binSize;
+            var x2 = (i + 1) * binSize;
+            var height = histData[i] * scaleFactor;
+            
+            var bar = orthBoard.create('polygon', [
+              [x1, 0], [x2, 0], [x2, height], [x1, height]
+            ], {
+              fillColor: '#8bc88b',
+              fillOpacity: 0.7,
+              borders: {strokeColor: '#8bc88b'}
+            });
+            
+            barsArray.push(bar);
+          }
+          
+          // Update theory curve
+          var theoryX = [];
+          var theoryY = [];
+          var stdev = 1 / Math.sqrt(dim);
+          
+          for (var x = 0; x <= 1; x += 0.01) {
+            theoryX.push(x);
+            // PDF for half-normal distribution with parameter sigma = 1/sqrt(n)
+            var y = Math.sqrt(2/Math.PI) * (1/stdev) * Math.exp(-Math.pow(x, 2)/(2*Math.pow(stdev, 2)));
+            theoryY.push(y * scaleFactor);
+          }
+          
+          if (theoryCurve) {
+            orthBoard.removeObject(theoryCurve);
+          }
+          
+          theoryCurve = orthBoard.create('curve', [theoryX, theoryY], {
+            strokeColor: '#d40000',
+            strokeWidth: 2
+          });
+        }
+        
+        var theoryCurve;
+        updateHistogram();
+        
+        // Update when slider changes
+        dimSlider.on('drag', function() {
+          updateHistogram();
+        });
+        
+        // Add labels
+        orthBoard.create('text', [0.5, 1.05, 'Distribution of Dot Products Between Random Unit Vectors'], {
+          anchorX: 'left', 
+          anchorY: 'bottom',
+          fontSize: 14
+        });
+        
+        orthBoard.create('text', [0.5, 0.95, function() {
+          return 'In dimension n = ' + Math.round(dimSlider.Value()) + ', vectors become nearly orthogonal';
+        }], {
+          anchorX: 'left', 
+          anchorY: 'bottom',
+          fontSize: 12
+        });
+        
+        orthBoard.create('text', [0.5, 0.9, 'Red curve: theoretical distribution, green bars: sampled data'], {
+          anchorX: 'left', 
+          anchorY: 'bottom',
+          fontSize: 10,
+          color: '#555'
+        });
+      };
+    </script>
+    
+    <script src="../../script.js"></script>
+  </body>
+</html> 

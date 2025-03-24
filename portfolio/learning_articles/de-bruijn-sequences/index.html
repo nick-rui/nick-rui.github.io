@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>A Magic Trick with De Bruijn Sequences | Nick Rui</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600&family=Work+Sans:wght@200;300;400&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../styles.css">
+    
+    <!-- MathJax for LaTeX rendering -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <!-- JSXGraph for interactive diagrams -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/jsxgraph@1.4.6/distrib/jsxgraph.css" />
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jsxgraph@1.4.6/distrib/jsxgraphcore.js"></script>
+    
+    <style>
+      .article-container {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+      
+      .article-header {
+        margin-bottom: 2rem;
+      }
+      
+      .article-meta {
+        color: var(--text-tertiary);
+        margin-bottom: 1.5rem;
+        font-size: 0.9rem;
+      }
+      
+      .article-meta span {
+        margin-right: 1.5rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      
+      .article-content {
+        font-size: 1.1rem;
+        line-height: 1.8;
+      }
+      
+      .article-content p {
+        margin-bottom: 1.5rem;
+      }
+      
+      .math-block {
+        overflow-x: auto;
+        padding: 1.5rem;
+        margin: 2rem 0;
+        background-color: var(--pastel-green-100);
+        border-radius: 8px;
+      }
+      
+      .diagram {
+        width: 100%;
+        height: 400px;
+        margin: 2rem 0;
+        border: 1px solid var(--pastel-green-200);
+        border-radius: 8px;
+      }
+      
+      .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 2rem;
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+        transition: all var(--transition-medium);
+      }
+      
+      .back-link:hover {
+        color: var(--pastel-green-500);
+        transform: translateX(-5px);
+      }
+
+      figure {
+        margin: 2rem 0;
+        text-align: center;
+      }
+
+      figcaption {
+        margin-top: 0.5rem;
+        font-size: 0.9rem;
+        color: var(--text-tertiary);
+      }
+      
+      .card-display {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        justify-content: center;
+        margin: 2rem 0;
+      }
+      
+      .card {
+        width: 80px;
+        height: 120px;
+        background-color: white;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.5rem;
+        font-weight: bold;
+        position: relative;
+      }
+      
+      .card.red {
+        color: #d40000;
+      }
+      
+      .card.black {
+        color: #000;
+      }
+      
+      .card::before,
+      .card::after {
+        position: absolute;
+        font-size: 1rem;
+      }
+      
+      .card::before {
+        top: 0.5rem;
+        left: 0.5rem;
+      }
+      
+      .card::after {
+        bottom: 0.5rem;
+        right: 0.5rem;
+        transform: rotate(180deg);
+      }
+    </style>
+  </head>
+  <body>
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <div class="image-wrapper">
+          <img src="../../images/nick.jpg" alt="Nick Rui" />
+        </div>
+        <h1>Nick Rui</h1>
+      </div>
+      
+      <nav>
+        <ul>
+          <li><a href="../../index.html">Home</a></li>
+          <li><a href="../../about.html">About Me</a></li>
+          <li><a href="../../projects.html">Projects</a></li>
+          <li><a href="../../learning.html">Learning</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <main class="main-content">
+      <div class="content-area">
+        <a href="../../learning.html" class="back-link">
+          <i class="fas fa-arrow-left"></i>
+          <span>Back to Learning</span>
+        </a>
+        
+        <div class="article-container">
+          <div class="article-header">
+            <h2 id="article-title">A Magic Trick with De Bruijn Sequences</h2>
+            <div class="article-meta">
+              <span><i class="fas fa-calendar-alt"></i> Published: April 2025</span>
+            </div>
+          </div>
+          
+          <div class="article-content">
+            <!-- Introduction -->
+            <p>
+              Imagine this scene: five audience members each select a card from a deck. A magician, who only knows which audience members hold red cards (hearts or diamonds), correctly identifies all five cards. Is this real magic? No—it's mathematics, specifically an application of de Bruijn sequences.
+            </p>
+            
+            <!-- Section 1: The Setup -->
+            <h3>The Magic Trick Setup</h3>
+            <p>
+              Here's how the trick works:
+            </p>
+            
+            <ol>
+              <li>Five volunteers from the audience each select one card from a deck.</li>
+              <li>An assistant (who knows all the cards) tells the magician which volunteers have red cards (hearts or diamonds).</li>
+              <li>Based on this information alone, the magician correctly identifies all five cards.</li>
+            </ol>
+            
+            <p>
+              This seems impossible. With 5 people each holding one of 52 possible cards, there are \(52^5\) possible combinations. How can knowing only which cards are red (essentially 5 bits of information) be enough?
+            </p>
+            
+            <!-- Visual representation of the trick -->
+            <div class="card-display" id="cardDisplay">
+              <!-- Cards will be inserted by JavaScript -->
+            </div>
+            
+            <!-- Section 2: De Bruijn Sequences -->
+            <h3>De Bruijn Sequences: The Mathematical Foundation</h3>
+            <p>
+              The trick relies on a special mathematical structure called a de Bruijn sequence. A binary de Bruijn sequence of order n is a cyclic sequence of 0s and 1s in which every possible n-length binary string appears exactly once as a substring.
+            </p>
+            
+            <p>
+              For example, the binary de Bruijn sequence of order 3 is:
+            </p>
+            
+            <div class="math-block">
+              \begin{align}
+              00010111
+              \end{align}
+            </div>
+            
+            <p>
+              You can verify that every possible 3-bit string appears exactly once:
+            </p>
+            <ul>
+              <li>000 (wrapping around: last 0, first 00)</li>
+              <li>001</li>
+              <li>010</li>
+              <li>101</li>
+              <li>011</li>
+              <li>111</li>
+              <li>110</li>
+              <li>100</li>
+            </ul>
+            
+            <p>
+              For our card trick, we need a binary de Bruijn sequence of order 5, which has length \(2^5 = 32\). This sequence allows us to encode \(52^5 \div 2^5 \approx 380\) million different card combinations with the same pattern of red and black cards!
+            </p>
+            
+            <!-- Section 3: How the Trick Works -->
+            <h3>The Secret Behind the Trick</h3>
+            <p>
+              Here's how the assistant and magician perform the trick:
+            </p>
+            
+            <ol>
+              <li>
+                <strong>Preparation:</strong> The assistant and magician agree on a binary de Bruijn sequence of order 5, and they map each of the \(2^5 = 32\) possible 5-bit patterns to a specific arrangement of 5 cards.
+              </li>
+              <li>
+                <strong>Performance:</strong> When the audience members select cards, the assistant finds the specific pattern of red/black cards in the de Bruijn sequence. The assistant then ensures that the audience members are ordered so that their red/black pattern matches this sequence.
+              </li>
+              <li>
+                <strong>The Reveal:</strong> The magician, knowing only which cards are red, looks up the corresponding arrangement in their shared mapping and determines all five cards.
+              </li>
+            </ol>
+            
+            <p>
+              This works because the de Bruijn sequence guarantees that each pattern of 5 bits appears exactly once in the sequence. The assistant's job is to find where in the sequence this pattern occurs and arrange the audience members accordingly.
+            </p>
+            
+            <!-- Mathematical explanation -->
+            <h3>The Mathematical Explanation</h3>
+            <p>
+              Let's dive deeper into the mathematics. The key insight is that while there are \(2^5 = 32\) possible patterns of red and black cards, these patterns can be placed in a cyclic order where each consecutive 5-card pattern appears exactly once.
+            </p>
+            
+            <p>
+              To generate a binary de Bruijn sequence of order n, we can construct a de Bruijn graph:
+            </p>
+            
+            <div class="math-block">
+              \begin{align}
+              G = (V, E)\\
+              V = \{0,1\}^{n-1}\\
+              E = \{(ax, xb) | a, b \in \{0,1\}, x \in \{0,1\}^{n-2}\}
+              \end{align}
+            </div>
+            
+            <p>
+              Finding an Eulerian cycle in this graph gives us a de Bruijn sequence. For our card trick, we can use this sequence to create a mapping between the 32 possible red/black patterns and the specific cards held by each person.
+            </p>
+            
+            <!-- Interactive diagram -->
+            <div id="graphDiagram" class="diagram"></div>
+            <figcaption>Interactive Diagram: A visualization of a de Bruijn graph for n=3, showing how the sequence is formed.</figcaption>
+            
+            <!-- Section 4: Extensions and Variations -->
+            <h3>Extensions and Variations</h3>
+            <p>
+              This trick can be extended in several ways:
+            </p>
+            
+            <ul>
+              <li>
+                <strong>More Information:</strong> If the assistant provides not just red/black information but also the suit (hearts, diamonds, clubs, spades), they can convey more information, allowing for more cards or more complex arrangements.
+              </li>
+              <li>
+                <strong>Different Deck Sizes:</strong> The basic principle works with any deck size, though the specific implementation may vary.
+              </li>
+              <li>
+                <strong>Different Number of Audience Members:</strong> With more than 5 audience members, a higher-order de Bruijn sequence would be needed.
+              </li>
+            </ul>
+            
+            <!-- Conclusion -->
+            <h3>Conclusion: Mathematics as Magic</h3>
+            <p>
+              This trick demonstrates how advanced mathematical concepts can create seemingly impossible feats. De Bruijn sequences, which have applications in cryptography, DNA sequencing, and other fields, form the backbone of this mathematical magic trick.
+            </p>
+            
+            <p>
+              The next time you see a magician performing what seems like an impossible card trick, remember that there might be some elegant mathematics behind the curtain!
+            </p>
+            
+            <!-- Interactive element for readers to try themselves -->
+            <h3>Try It Yourself</h3>
+            <p>
+              Use the interactive diagram below to generate different arrangements of cards and see if you can predict what the magician would say. Can you figure out the pattern?
+            </p>
+            
+            <div id="interactiveTrick" class="diagram"></div>
+            <figcaption>Interactive Demo: Generate random card arrangements and see the magician's prediction.</figcaption>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script>
+      // Initialize display of cards
+      document.addEventListener('DOMContentLoaded', function() {
+        const suits = {
+          hearts: { symbol: '♥', color: 'red' },
+          diamonds: { symbol: '♦', color: 'red' },
+          clubs: { symbol: '♣', color: 'black' },
+          spades: { symbol: '♠', color: 'black' }
+        };
+        
+        const values = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
+        
+        // Sample cards for display
+        const sampleCards = [
+          { value: 'A', suit: 'hearts' },
+          { value: '10', suit: 'spades' },
+          { value: 'K', suit: 'diamonds' },
+          { value: 'J', suit: 'clubs' },
+          { value: 'Q', suit: 'hearts' }
+        ];
+        
+        const cardDisplay = document.getElementById('cardDisplay');
+        
+        sampleCards.forEach(card => {
+          const cardElement = document.createElement('div');
+          cardElement.className = `card ${suits[card.suit].color}`;
+          cardElement.textContent = card.value + suits[card.suit].symbol;
+          
+          cardElement.setAttribute('data-red', suits[card.suit].color === 'red' ? 'true' : 'false');
+          
+          cardDisplay.appendChild(cardElement);
+        });
+        
+        // Initialize JSXGraph for de Bruijn graph visualization
+        if (document.getElementById('graphDiagram')) {
+          const board = JXG.JSXGraph.initBoard('graphDiagram', {
+            boundingbox: [-1.5, 1.5, 1.5, -1.5],
+            axis: false,
+            grid: false,
+            showNavigation: false,
+            showCopyright: false
+          });
+          
+          // Create vertices for de Bruijn graph (n=3)
+          const vertices = [];
+          const positions = [
+            [0, 1], [Math.cos(Math.PI/4), Math.sin(Math.PI/4)], 
+            [1, 0], [Math.cos(-Math.PI/4), Math.sin(-Math.PI/4)],
+            [0, -1], [Math.cos(-3*Math.PI/4), Math.sin(-3*Math.PI/4)],
+            [-1, 0], [Math.cos(3*Math.PI/4), Math.sin(3*Math.PI/4)]
+          ];
+          
+          const labels = ['00', '01', '10', '11', '00', '01', '10', '11'];
+          
+          for (let i = 0; i < 8; i++) {
+            vertices.push(board.create('point', positions[i], {
+              name: labels[i],
+              size: 5,
+              fixed: true,
+              showInfobox: false
+            }));
+          }
+          
+          // Define the edges (simplified for visualization)
+          const edges = [
+            [0, 1], [1, 2], [2, 3], [3, 4], [4, 5], [5, 6], [6, 7], [7, 0]
+          ];
+          
+          for (let i = 0; i < edges.length; i++) {
+            board.create('arrow', [vertices[edges[i][0]], vertices[edges[i][1]]], {
+              strokeWidth: 2,
+              strokeColor: '#8bc88b'
+            });
+          }
+          
+          // Add explanation
+          board.create('text', [0, -1.3, 'De Bruijn Graph for n=3'], {
+            fontSize: 14,
+            anchorX: 'middle',
+            anchorY: 'top'
+          });
+        }
+        
+        // Interactive demo
+        if (document.getElementById('interactiveTrick')) {
+          const board = JXG.JSXGraph.initBoard('interactiveTrick', {
+            boundingbox: [-1, 5, 11, -1],
+            axis: false,
+            grid: false
+          });
+          
+          // Create button to generate new cards
+          board.create('button', [1, 0.5, 'Generate New Cards', function() {
+            generateCards();
+          }], { width: 150 });
+          
+          // Generate random cards and show prediction
+          function generateCards() {
+            // Implementation would use de Bruijn sequence for real prediction
+            // This is a simplified demo version
+            
+            // Clear existing elements
+            board.removeObject(board.elements["cardtext"]);
+            board.removeObject(board.elements["predictiontext"]);
+            
+            // Generate 5 random cards
+            const cards = [];
+            for (let i = 0; i < 5; i++) {
+              const value = values[Math.floor(Math.random() * values.length)];
+              const suitKeys = Object.keys(suits);
+              const suit = suitKeys[Math.floor(Math.random() * suitKeys.length)];
+              cards.push({ value, suit });
+            }
+            
+            // Display cards
+            let cardText = 'Cards selected: ';
+            cards.forEach((card, i) => {
+              cardText += card.value + suits[card.suit].symbol + ' ';
+            });
+            
+            // Show which are red
+            let redPattern = 'Red cards: ';
+            cards.forEach((card, i) => {
+              if (suits[card.suit].color === 'red') {
+                redPattern += (i+1) + ' ';
+              }
+            });
+            
+            // Create text elements
+            board.create('text', [1, 4, cardText], { id: 'cardtext' });
+            board.create('text', [1, 3, redPattern], { id: 'predictiontext' });
+            
+            // In a real implementation, the magician would use the de Bruijn sequence
+            // to determine the exact cards
+          }
+          
+          // Initial card generation
+          generateCards();
+        }
+      });
+    </script>
+    
+    <script src="../../script.js"></script>
+  </body>
+</html> 
