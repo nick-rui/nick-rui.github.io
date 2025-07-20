@@ -350,8 +350,8 @@ nav a.active::before {
 /* Section divider */
 .section-divider {
   margin: 5rem 0 3rem;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid var(--pastel-green-200);
+  padding-bottom: 0rem;
+  /* border-bottom: 1px solid var(--pastel-green-200); */
 }
 
 /* About Page Styles */
@@ -393,19 +393,115 @@ nav a.active::before {
   top: 8px;
 }
 
-.experience-item {
+/* Main container with the vertical line */
+.experience-container {
+  border-left: 1px solid var(--pastel-green-200);
   position: relative;
   padding-left: 2rem;
-  margin-bottom: 2.5rem;
-  padding-bottom: 1.5rem;
-  border-left: 1px solid var(--pastel-green-200);
-  opacity: 0;
-  transform: translateX(20px);
-  animation: slideIn 0.8s ease forwards;
 }
 
-.experience-item:hover {
-  transform: translateX(5px);
+/* Position/company item */
+.experience-item {
+  position: relative;
+  margin-bottom: 2.5rem;
+}
+
+.experience-item h3 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+.experience-item p {
+  /* margin-left: 0.5rem; */
+  font-size: 9pt;
+  margin-bottom: 0;
+}
+
+/* Company/position dot on timeline */
+.experience-item::before {
+  content: '';
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: var(--pastel-green-300);
+  left: -2rem;
+  transform: translateX(-50%);
+  top: 0.5rem;
+  transition: background-color var(--transition-medium);
+}
+
+.experience-item:hover::before {
+  background-color: var(--pastel-green-500);
+}
+
+/* Container for multiple roles within a position */
+.roles-container {
+  margin-top: 1rem;
+  margin-left: 1rem;
+  border-left: 1px dashed var(--pastel-green-200);
+  padding-left: 1.5rem;
+}
+
+/* Individual role item */
+.role-item {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.role-item:last-child {
+  margin-bottom: 0;
+}
+
+.role-item h4 {
+  margin-top: 0;
+  margin-bottom: 0.25rem;
+}
+
+/* Role dot on timeline */
+.role-item::before {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--pastel-green-200);
+  left: -1.5rem;
+  transform: translateX(-50%);
+  top: 0.5rem;
+  transition: background-color var(--transition-medium);
+}
+
+.role-item:hover::before {
+  background-color: var(--pastel-green-400);
+}
+
+/* Date ranges */
+.date-range {
+  font-size: 0.9rem;
+  color: var(--text-muted, #666);
+  margin-bottom: 0.5rem;
+}
+
+/* Role description */
+.role-description {
+  margin-top: 0.5rem;
+}
+
+/* .experience-container {
+  border-left: 1px solid var(--pastel-green-200);
+  position: relative;
+  padding-left: 2rem;
+}
+
+.experience-item {
+  position: relative;
+  margin-bottom: 2.5rem;
+}
+
+.experience-item h3 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
 }
 
 .experience-item::before {
@@ -415,14 +511,15 @@ nav a.active::before {
   height: 12px;
   border-radius: 50%;
   background-color: var(--pastel-green-300);
-  left: -6px;
-  top: 8px;
+  left: -2rem;  
+  transform: translateX(-50%);  
+  top: 0.5rem;  
   transition: background-color var(--transition-medium);
 }
 
 .experience-item:hover::before {
   background-color: var(--pastel-green-500);
-}
+} */
 
 .timeline {
   font-size: 0.85rem;
@@ -1120,6 +1217,18 @@ nav a.active::before {
   animation: slideIn 0.8s ease forwards;
 }
 
+.company-timeline-container {
+  position: relative;
+  padding-left: 2rem;
+  border-left: 1px solid var(--pastel-green-200);
+  margin-left: 6px;  /* This creates some space to the left of the timeline */
+}
+
+.company-experience {
+  position: relative;
+  margin-bottom: 2.5rem;  /* Space between company entries */
+}
+
 .company-experience::before {
   content: '';
   position: absolute;
@@ -1127,8 +1236,9 @@ nav a.active::before {
   height: 12px;
   border-radius: 50%;
   background-color: var(--pastel-green-300);
-  left: -6px;
-  top: 8px;
+  left: -2rem;  /* Align with the vertical line */
+  transform: translateX(-50%);  /* Center the dot on the line */
+  top: 8px;  /* Vertical alignment with company name */
   transition: background-color var(--transition-medium);
 }
 
@@ -1137,11 +1247,17 @@ nav a.active::before {
 }
 
 .company-name {
-  margin-bottom: 1rem;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
   font-size: 1.5rem;
   font-weight: 300;
   letter-spacing: -0.3px;
   font-family: 'Nunito', sans-serif;
+}
+
+.role {
+  margin-bottom: 0.5rem;
+  font-weight: 500;
 }
 
 .position-item {
@@ -1415,4 +1531,61 @@ nav a.active::before {
     padding: 0.35rem 0.9rem;
     font-size: 0.85rem;
   }
+}
+
+.coursework-container {
+  margin-top: 1rem;
+}
+
+.coursework-toggle {
+  background: none;
+  border: none;
+  color: var(--text-color);
+  cursor: pointer;
+  padding: 0.5rem 0;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: color 0.3s ease;
+}
+
+.coursework-toggle:hover {
+  color: var(--accent-color);
+}
+
+.coursework-toggle i {
+  transition: transform 0.3s ease;
+}
+
+.coursework-toggle.active i {
+  transform: rotate(180deg);
+}
+
+.coursework-content {
+  display: none;
+  margin-top: 1rem;
+  padding-left: 1rem;
+}
+
+.coursework-content.active {
+  display: block;
+}
+
+.coursework-content h5 {
+  margin: 1rem 0 0.5rem 0;
+  color: var(--text-color);
+  font-size: 0.9rem;
+}
+
+.coursework-content ul {
+  list-style-type: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.coursework-content li {
+  margin: 0.5rem 0;
+  font-size: 0.9rem;
+  color: var(--text-color-secondary);
 } 

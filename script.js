@@ -157,4 +157,10 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   }
-}); 
+});
+
+function toggleCoursework(button) {
+  const content = button.nextElementSibling;
+  button.classList.toggle('active');
+  content.classList.toggle('active');
+} 
