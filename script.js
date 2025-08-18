@@ -1,16 +1,13 @@
 // Wait for DOM content to be fully loaded
 document.addEventListener('DOMContentLoaded', () => {
-  // Highlight current page in sidebar navigation
-  const currentPage = window.location.pathname.split('/').pop();
-  const navLinks = document.querySelectorAll('nav a');
-  
-  navLinks.forEach(link => {
-    const linkHref = link.getAttribute('href');
-    if (linkHref === currentPage || 
-        (currentPage === '' && linkHref === 'index.html')) {
-      link.classList.add('active');
-    }
-  });
+  // Initialize navigation if it doesn't exist
+  if (!document.querySelector('.sidebar')) {
+    // Load navigation component
+    loadNavigation();
+  } else {
+    // Highlight current page in existing sidebar navigation
+    highlightCurrentPage();
+  }
   
   // Subtle background color change on scroll
   window.addEventListener('scroll', () => {
@@ -163,4 +160,51 @@ function toggleCoursework(button) {
   const content = button.nextElementSibling;
   button.classList.toggle('active');
   content.classList.toggle('active');
+}
+
+// Navigation component functions
+function createNavigation() {
+  const sidebar = document.createElement('aside');
+  sidebar.className = 'sidebar';
+  
+  sidebar.innerHTML = `
+    <div class="sidebar-logo">
+      <div class="image-wrapper">
+        <img src="images/nick.jpg" alt="Nick Rui" />
+      </div>
+      <h1>Nick Rui</h1>
+    </div>
+    
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="writing.html">Writing</a></li>
+      </ul>
+    </nav>
+  `;
+  
+  return sidebar;
+}
+
+function loadNavigation() {
+  // Create and insert the navigation at the beginning of the body
+  const navigation = createNavigation();
+  document.body.insertBefore(navigation, document.body.firstChild);
+  
+  // Highlight the current page in navigation
+  highlightCurrentPage();
+}
+
+function highlightCurrentPage() {
+  const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+  const navLinks = document.querySelectorAll('.sidebar nav a');
+  
+  navLinks.forEach(link => {
+    const href = link.getAttribute('href');
+    if (href === currentPage) {
+      link.classList.add('active');
+    }
+  });
 } 

@@ -37,7 +37,7 @@ body {
   color: var(--text-primary);
   background-color: var(--white);
   transition: background-color var(--transition-slow);
-  min-height: 100vh;
+  min-height: 100vh; 
 }
 
 a {
@@ -766,6 +766,116 @@ nav a.active::before {
   gap: 1rem;
   cursor: pointer;
   transition: all var(--transition-medium);
+}
+
+/* Article link styles for clickable cards */
+.article-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  transition: none;
+}
+
+.article-link:hover {
+  color: inherit;
+  text-decoration: none;
+}
+
+.article-link .project-item {
+  cursor: pointer;
+}
+
+.article-link:hover .project-item {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  border-color: var(--pastel-green-200);
+}
+
+.article-link:hover .project-header {
+  background-color: var(--pastel-green-100);
+}
+
+/* Article container styles - compact version of project containers */
+.article-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.5rem;
+}
+
+.article-item {
+  background-color: var(--white);
+  border-radius: 8px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.02);
+  overflow: hidden;
+  transition: all var(--transition-medium);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 1px solid var(--pastel-green-100);
+  cursor: pointer;
+}
+
+.article-item:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  border-color: var(--pastel-green-200);
+}
+
+.article-header {
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--pastel-green-100);
+  transition: background-color var(--transition-medium);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
+
+.article-item:hover .article-header {
+  background-color: var(--pastel-green-100);
+}
+
+.article-title {
+  font-size: 1.3rem;
+  margin: 0 0 0.4rem;
+  color: var(--text-primary);
+  font-weight: 400;
+  letter-spacing: -0.3px;
+  font-family: 'Nunito', sans-serif;
+}
+
+.article-subtitle {
+  font-size: 1rem;
+  margin: 0 0 0.4rem;
+  color: var(--text-secondary);
+  font-weight: 300;
+  line-height: 1.4;
+}
+
+.article-meta {
+  font-size: 0.85rem;
+  color: var(--text-tertiary);
+  font-weight: 300;
+  margin: 0;
+}
+
+.article-content {
+  padding: 1.5rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.article-link-compact {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  transition: none;
+}
+
+.article-link-compact:hover {
+  color: inherit;
+  text-decoration: none;
 }
 
 .pdf-embed i {
