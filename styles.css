@@ -800,6 +800,7 @@ nav a.active::before {
   display: flex;
   flex-direction: column;
   margin-bottom: 1.5rem;
+  gap: 1rem;
 }
 
 .article-item {
@@ -813,6 +814,7 @@ nav a.active::before {
   justify-content: center;
   border: 1px solid var(--pastel-green-100);
   cursor: pointer;
+  margin-bottom: 0.25rem;
 }
 
 .article-item:hover {
@@ -822,7 +824,7 @@ nav a.active::before {
 }
 
 .article-header {
-  padding: 1.25rem 1.5rem;
+  padding: 1.5rem 1.75rem;
   border-bottom: 1px solid var(--pastel-green-100);
   transition: background-color var(--transition-medium);
   display: flex;
@@ -876,6 +878,91 @@ nav a.active::before {
 .article-link-compact:hover {
   color: inherit;
   text-decoration: none;
+}
+
+/* Project card styles - similar to article cards but with links */
+.project-card-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.5rem;
+  gap: 1rem;
+}
+
+.project-card-item {
+  background-color: var(--white);
+  border-radius: 8px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.02);
+  overflow: hidden;
+  transition: all var(--transition-medium);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: auto;
+  border: 1px solid var(--pastel-green-100);
+  cursor: pointer;
+  margin-bottom: 0.25rem; /* ensure a touch of spacing even if container gap collapses */
+}
+
+.project-card-item:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  border-color: var(--pastel-green-200);
+}
+
+.project-card-header {
+  padding: 1.5rem 1.75rem;
+  border-bottom: 1px solid var(--pastel-green-100);
+  transition: background-color var(--transition-medium);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
+
+.project-card-item:hover .project-card-header {
+  background-color: var(--pastel-green-100);
+}
+
+.project-card-title {
+  font-size: 1.3rem;
+  margin: 0 0 0.4rem;
+  color: var(--text-primary);
+  font-weight: 400;
+  letter-spacing: -0.3px;
+  font-family: 'Nunito', sans-serif;
+}
+
+.project-card-description {
+  font-size: 1rem;
+  margin: 0 0 0.8rem;
+  color: var(--text-secondary);
+  font-weight: 300;
+  line-height: 1.4;
+}
+
+.project-card-links {
+  display: flex;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.project-card-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.8rem;
+  background-color: var(--pastel-green-100);
+  color: var(--text-primary);
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: 400;
+  transition: all var(--transition-medium);
+  text-decoration: none;
+}
+
+.project-card-links a:hover {
+  background-color: var(--pastel-green-300);
+  transform: translateY(-2px);
 }
 
 .pdf-embed i {
