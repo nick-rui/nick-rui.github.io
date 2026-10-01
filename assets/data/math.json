@@ -1,0 +1,14 @@
+[
+  {
+    "title": "Topological and Spectral Connectivity in Random Graphs",
+    "paper": "assets/papers/spectral_connectivity.pdf"
+  },
+  {
+    "title": "Bertrand's Postulate",
+    "paper": "assets/papers/bertrands_postulate.pdf"
+  },
+  {
+    "title": "Derangements and Rubik's Cubes",
+    "paper": "assets/papers/derangements.pdf"
+  }
+]

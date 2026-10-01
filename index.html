@@ -23,7 +23,10 @@
                   Nick Rui
                 </p>
                 <p>
-                  I'm a math undergrad at Stanford and a researcher with the NLP group at SAIL. Previously, I built software at AWS and <a href="assets/images/frogs.jpg">caught frogs</a> working in outdoor swimming pool management and operations.
+                  I'm a math undergrad at Stanford. I'm interested in the science of deep learning, including data selection/attribution, continual learning, and the interpretability of emergent behaviors.
+                </p>
+                <p>
+                  Previously, I worked on formal verification research at Math Inc and access control systems at AWS. Before that, I <span class="hover-img"><a href="assets/images/frogs.jpg">caught frogs</a><img src="assets/images/frogs.jpg" alt="Catching frogs at the pool" loading="lazy"></span> working in outdoor swimming pool management.
                 </p>
                 <p style="text-align:center">
                   <a href="mailto:nickrui@stanford.edu">Email</a> &nbsp;/&nbsp;
@@ -45,142 +48,34 @@
             <tr>
               <td style="padding:16px;width:100%;vertical-align:middle">
                 <h2>Research</h2>
-                <p>
-                  I am broadly interested in data, reasoning, and interpretability.
-                    </p>
-                    <table style="width:100%;border:0px;border-spacing:0px 10px;border-collapse:separate;"><tbody>
-                      <tr>
-                        <td style="padding:16px;width:25%;vertical-align:middle">
-                          <div class="one">
-                            <img src="assets/images/latent-planning.png" width="100%">
-                          </div>
-                        </td>
-                        <td style="padding:8px;width:75%;vertical-align:middle">
-                          <a href="https://arxiv.org/abs/2605.07984">
-                            <span class="papertitle">Where's the Plan? Locating Latent Planning in Language Models with
-                              Lightweight Mechanistic Interventions </span>
-                          </a>
-                          <br>
-                          <a href="#">Nicole H. Ma</a>,
-                          <strong>Nick Rui</strong>
-                          <br>
-                          <em>ICML Workshop on Mechanistic Interpretability</em>, 2026
-                          <br>
-                          <p></p>
-                          <a href="https://arxiv.org/abs/2605.07984">arXiv</a>
-                          <p></p>
-                          <p>
-                            We investigate where activation-level representations of future tokens form in open-source language models and how they change with scale.
-                          </p>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td style="padding:16px;width:25%;vertical-align:middle">
-                          <div class="one">
-                            <img src="assets/images/ttmass.png" width="100%">
-                          </div>
-                        </td>
-                        <td style="padding:8px;width:75%;vertical-align:middle">
-                          <a href="https://arxiv.org/abs/2603.03524">
-                            <span class="papertitle">Test-Time Meta-Adaptation with Self-Synthesis</span>
-                          </a>
-                          <br>
-                          <a href="#">Zeyneb N. Kaya</a>,
-                          <strong>Nick Rui</strong>
-                          <br>
-                          <em>ICLR Workshop on AI with Recursive Self-Improvement</em>, 2026
-                          <br>
-                          <p></p>
-                          <a href="https://arxiv.org/abs/2603.03524">arXiv</a>
-                          <p></p>
-                          <p>
-                            We introduce a bilevel optimization framework to train language models to self-adapt at inference time using reinforcement learning and meta-gradients.
-                          </p>
-                        </td>
-                      </tr>
-                      <!-- <tr>
-                        <td style="padding:16px;width:25%;vertical-align:middle">
-                          <div class="one">
-                            <img src="images/image.jpg" width="100%">
-                          </div>
-                        </td>
-                        <td style="padding:8px;width:75%;vertical-align:middle">
-                          <a href="#">
-                            <span class="papertitle">Another Research Paper</span>
-                          </a>
-                          <br>
-                          <a href="#">Co-Author One</a>,
-                          <strong>Nick Rui</strong>
-                          <br>
-                          <em>Workshop Name</em>, 2024
-                          <br>
-                          <a href="#">paper</a> / <a href="#">arXiv</a>
-                          <p></p>
-                          <p>
-                            Description of this paper's findings and methodology.
-                          </p>
-                        </td>
-                      </tr> -->
-                    </tbody></table>
+                    <!-- Papers live in assets/data/publications.json and are rendered by assets/js/render.js -->
+                    <table style="width:100%;border:0px;border-spacing:0px 10px;border-collapse:separate;">
+                      <tbody id="publications"></tbody>
+                    </table>
 
                 <h2>Math</h2>
-                    <table style="width:100%;border:0px;border-spacing:0px 10px;border-collapse:separate;"><tbody>
-                      <tr>
-                        <td style="padding:8px 16px;width:100%;vertical-align:middle">
-                          <a href="assets/papers/spectral_connectivity.pdf">
-                            <span class="papertitle">Topological and Spectral Connectivity in Random Graphs</span>
-                          </a>
-                        </td>
-                      </tr>
-
-                      <tr>
-                        <td style="padding:8px 16px;width:100%;vertical-align:middle">
-                          <a href="assets/papers/bertrands_postulate.pdf">
-                            <span class="papertitle">Bertrand's Postulate</span>
-                          </a>
-                        </td>
-                      </tr>
-
-                      <tr>
-                        <td style="padding:8px 16px;width:100%;vertical-align:middle">
-                          <a href="assets/papers/derangements.pdf">
-                            <span class="papertitle">Derangements and Rubik's Cubes</span>
-                          </a>
-                        </td>
-                      </tr>
-
-                      <tr>
-                        <td style="padding:8px 16px;width:100%;vertical-align:middle">
-                          <a href="assets/papers/prime_density.pdf">
-                            <span class="papertitle">Probabilistic Estimation of Prime Number Density</span>
-                          </a>
-                        </td>
-                      </tr>
-
-                      <tr>
-                        <td style="padding:8px 16px;width:100%;vertical-align:middle">
-                          <a href="assets/papers/backprop_calculus.pdf">
-                            <span class="papertitle">Backpropogation Calculus from Scratch</span>
-                          </a>
-                        </td>
-                      </tr>
-
-                    </tbody></table>
+                    <!-- Entries live in assets/data/math.json, rendered by assets/js/render.js -->
+                    <table style="width:100%;border:0px;border-spacing:0px 10px;border-collapse:separate;">
+                      <tbody id="math"></tbody>
+                    </table>
 
                     <h2>Awards</h2>
                     <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;"><tbody>
                       <br>
                       <tr>
+                        <td style="padding:2px 16px;width:100%;vertical-align:middle">Winner @ Inference-Time Compute Hackathon &ndash; <a href="https://devpost.com/software/metagrad-distill">project</a></td>
+                      </tr>
+                      <tr>
+                        <td style="padding:2px 16px;width:100%;vertical-align:middle">Winner @ TreeHacks 2026 &ndash; <a href="https://devpost.com/software/power-lever">project</a></td>
+                      </tr>
+                      <tr>
                         <td style="padding:2px 16px;width:100%;vertical-align:middle">Kleiner Perkins Engineering Fellow</td>
                       </tr>
                       <tr>
+                        <td style="padding:2px 16px;width:100%;vertical-align:middle">Winner @ HackMIT 2025</td>
+                      </tr>
+                      <tr>
                         <td style="padding:2px 16px;width:100%;vertical-align:middle">Coca-Cola Scholar</td>
-                      </tr>
-                      <tr>
-                        <td style="padding:2px 16px;width:100%;vertical-align:middle">Nancy Major Memorial Scholarship</td>
-                      </tr>
-                      <tr>
-                        <td style="padding:2px 16px;width:100%;vertical-align:middle">Legend League, Clash of Clans</td>
                       </tr>
                     </tbody></table>
 
@@ -203,5 +98,6 @@
         </td>
       </tr>
     </tbody></table>
+    <script src="assets/js/render.js"></script>
   </body>
 </html>

@@ -1,0 +1,48 @@
+[
+  {
+    "title": "Privileged Context as Drift in On-Policy Self-Distillation",
+    "url": "#",
+    "image": "assets/images/pc-opsd.png",
+    "authors": [
+      { "name": "Nick Rui", "me": true },
+      { "name": "Ravenor Davion", "url": "https://www.ravenordavion.com/" }
+    ],
+    "venue": "NeurIPS Workshop on Continual Learning",
+    "year": 2026,
+    "links": [
+      { "label": "arXiv", "url": "#" }
+    ],
+    "description": "We study how choices of privileged context affect policy drift in on-policy self-distillation.",
+    "hidden": true
+  },
+  {
+    "title": "Where's the Plan? Locating Latent Planning in Language Models with Lightweight Mechanistic Interventions",
+    "url": "https://arxiv.org/abs/2605.07984",
+    "image": "assets/images/latent-planning.png",
+    "authors": [
+      { "name": "Nicole H. Ma", "url": "https://www.nicolema.com/" },
+      { "name": "Nick Rui", "me": true }
+    ],
+    "venue": "ICML Workshop on Mechanistic Interpretability",
+    "year": 2026,
+    "links": [
+      { "label": "arXiv", "url": "https://arxiv.org/abs/2605.07984" }
+    ],
+    "description": "We investigate where and how representations of future tokens form in language models."
+  },
+  {
+    "title": "Test-Time Meta-Adaptation with Self-Synthesis",
+    "url": "https://arxiv.org/abs/2603.03524",
+    "image": "assets/images/ttmass.png",
+    "authors": [
+      { "name": "Zeyneb N. Kaya", "url": "https://zeynebnk.com/" },
+      { "name": "Nick Rui", "me": true }
+    ],
+    "venue": "ICLR Workshop on AI with Recursive Self-Improvement",
+    "year": 2026,
+    "links": [
+      { "label": "arXiv", "url": "https://arxiv.org/abs/2603.03524" }
+    ],
+    "description": "Training language models to train themselves at inference time with RL and metagradients."
+  }
+]
