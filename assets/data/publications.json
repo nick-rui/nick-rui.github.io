@@ -1,19 +1,18 @@
 [
   {
     "title": "Privileged Context as Drift in On-Policy Self-Distillation",
-    "url": "#",
+    "url": "https://arxiv.org/abs/2610.07842",
     "image": "assets/images/pc-opsd.png",
     "authors": [
-      { "name": "Nick Rui", "me": true },
-      { "name": "Ravenor Davion", "url": "https://www.ravenordavion.com/" }
+      { "name": "Ravenor Davion", "url": "https://www.ravenordavion.com/" },
+      { "name": "Nick Rui", "me": true }
     ],
     "venue": "NeurIPS Workshop on Continual Learning",
     "year": 2026,
     "links": [
-      { "label": "arXiv", "url": "#" }
+      { "label": "arXiv", "url": "https://arxiv.org/abs/2610.07842" }
     ],
-    "description": "We study how choices of privileged context affect policy drift in on-policy self-distillation.",
-    "hidden": true
+    "description": "Studying how the source and content of privileged context affect policy drift in OPSD."
   },
   {
     "title": "Where's the Plan? Locating Latent Planning in Language Models with Lightweight Mechanistic Interventions",
